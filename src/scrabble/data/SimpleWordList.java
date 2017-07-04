@@ -1,9 +1,16 @@
 package scrabble.data;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 public class SimpleWordList implements WordList {
+  BufferedReader br;
+  Collection<String> collection = new HashSet<>();
 
   @Override
   public Set<String> validWordsUsingAllTiles(String tileRackPart) {
@@ -31,14 +38,27 @@ public class SimpleWordList implements WordList {
 
   @Override
   public int size() {
-    // TODO Auto-generated method stub
-    return 0;
+    return collection.size();
   }
 
   @Override
   public WordList initFromFile(String fileName) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      br = new BufferedReader(new FileReader(fileName));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    String currentLine;
+    try {
+      while ((currentLine = br.readLine()) != null) {
+        System.out.println(currentLine);
+        collection.add(currentLine);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    this.addAll(collection);
+    return this;
   }
 
 }
