@@ -2,6 +2,7 @@ package scrabble.util;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Permutation {
   String word;
@@ -27,7 +28,7 @@ public class Permutation {
   @Override
   public boolean equals(Object obj) {
     //TBD: Implement equals method
-    return obj.equals(this.getNormalized());
+    return Objects.equals(obj, this.getNormalized());
   }
 
   @Override
@@ -54,7 +55,6 @@ public class Permutation {
   public int length() {
     // TBD: implement this method
     return word.length();
-    //return 0;
   }
 
 }

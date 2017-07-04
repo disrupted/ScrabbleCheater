@@ -1,5 +1,6 @@
 package scrabble.util;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class PermutationUtilities {
@@ -11,7 +12,7 @@ public class PermutationUtilities {
    * @return
    */
   public static Set<String> getSubSets(String str) {
-    return null;
+    return new HashSet<String>();
   }
 
   public static String createPermutation(int length) {
@@ -19,6 +20,7 @@ public class PermutationUtilities {
   }
 
   public static String createPermutation(String p) {
-    return null;
+    Permutation perm = new Permutation(p);
+    return perm.getNormalized();
   }
 }
