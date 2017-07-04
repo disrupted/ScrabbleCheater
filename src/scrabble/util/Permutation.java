@@ -13,6 +13,14 @@ public class Permutation {
   @Override
   public int hashCode() {
     // TBD: implement this method
+    if (word != null) {
+      byte[] bytes = word.getBytes();
+      int result = 0;
+      for (byte aByte : bytes) {
+        result += aByte;
+      }
+      return result;
+    }
     return 0;
   }
 
@@ -29,10 +37,13 @@ public class Permutation {
 
   public String getNormalized() {
     // TBD: implement this method
-    byte[] arr = word.getBytes();
-    // Umsortieren
-    Arrays.sort(arr);
-    return new String(arr);
+    if (word != null) {
+      byte[] arr = word.getBytes();
+      // Umsortieren
+      Arrays.sort(arr);
+      return new String(arr);
+    }
+    return "";
   }
 
   public String getWord() {
