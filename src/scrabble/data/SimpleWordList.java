@@ -7,38 +7,49 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SimpleWordList implements WordList {
-  BufferedReader br;
-  Collection<String> collection = new HashSet<>();
+  private BufferedReader br;
+  TreeSet<String> collection = new TreeSet<>();
 
   @Override
   public Set<String> validWordsUsingAllTiles(String tileRackPart) {
     // TODO Auto-generated method stub
-    return null;
+    return new HashSet<String>();
   }
 
   @Override
   public Set<String> allValidWords(String tileRack) {
     // TODO Auto-generated method stub
-    return null;
+    return new HashSet<String>();
   }
 
   @Override
   public boolean add(String word) {
     // TODO Auto-generated method stub
-    return false;
+    if (collection.contains(word)) {
+      return false;
+    } else {
+      collection.add(word);
+      return true;
+    }
   }
 
   @Override
   public boolean addAll(Collection<String> words) {
     // TODO Auto-generated method stub
-    return false;
+    //collection.addAll(words);
+    return true;
   }
 
   @Override
   public int size() {
-    return collection.size();
+    if (collection != null) {
+      return collection.size();
+    } else {
+      return 0;
+    }
   }
 
   @Override
@@ -57,7 +68,7 @@ public class SimpleWordList implements WordList {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    this.addAll(collection);
+    addAll(collection);
     return this;
   }
 
