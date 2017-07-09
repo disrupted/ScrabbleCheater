@@ -21,6 +21,6 @@ public class PermutationUtilities {
 
   public static String createPermutation(String p) {
     Permutation perm = new Permutation(p);
-    return perm.getNormalized();
+    return perm.getPermutation();
   }
 }
