@@ -1,22 +1,62 @@
 package scrabble.util;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Permutation {
   private String permutation;
   private String original;
+  //private Set<String> permutations = new HashSet<String>();
 
   public Permutation(String original) {
     this.original = original;
     this.permutation = generateRandom(original);
+    //this.permutations = generateSubSets(original);
   }
 
+  public static Set<String> generateSubSets(String input) {
+    Set<String> set = new HashSet<>();
+    if (input.isEmpty())
+      return set;
+
+    char a = input.charAt(0);
+
+    if (input.length() > 1) {
+      input = input.substring(1);
+
+      Set<String> permSet = generateSubSets(input);
+
+      for (String x : permSet) {
+        for (int i = 0; i <= x.length(); i++) {
+          set.add(x.substring(0, i) + a + x.substring(i));
+        }
+      }
+    } else {
+      set.add(String.valueOf(a));
+    }
+    return set;
+  }
+
+  /* public static Set<String> generateSubSets(String str) {
+    return generateSubSets("", str);
+  } */
+
+  /* public static Set<String> generateSubSets(String prefix, String str) {
+    Set<String> set = new HashSet<String>();
+    int n = str.length();
+    if (n == 0) set.add(prefix);
+    else {
+      Set<String> permSet;
+      for (int i = 0; i < n; i++) {
+        permSet = generateSubSets(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n));
+        set.add(Arrays.toString(permSet.toArray()));
+      }
+    }
+    return set;
+  } */
+
   private static String generateRandom(String original) {
-    if (original == null)
+    if (original.isEmpty())
       return "";
     List<Character> characters = new ArrayList<>();
     for (char c : original.toCharArray()) {

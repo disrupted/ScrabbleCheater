@@ -11,7 +11,11 @@ import java.util.TreeSet;
 
 public class SimpleWordList implements WordList {
   private BufferedReader br;
-  TreeSet<String> collection = new TreeSet<>();
+  TreeSet<String> collection;
+
+  public SimpleWordList() {
+    collection = new TreeSet<>();
+  }
 
   @Override
   public Set<String> validWordsUsingAllTiles(String tileRackPart) {
@@ -38,8 +42,14 @@ public class SimpleWordList implements WordList {
 
   @Override
   public boolean addAll(Collection<String> words) {
-    // TODO Auto-generated method stub
-    //collection.addAll(words);
+    /* try {
+      for (String word : words) {
+        collection.add(word);
+      }
+    } catch (Exception e) {
+      return false;
+    } */
+    collection.addAll(words);
     return true;
   }
 

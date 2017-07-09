@@ -2,6 +2,8 @@ package scrabble.util;
 
 import org.junit.Test;
 
+import java.util.Set;
+
 import static org.junit.Assert.assertFalse;
 
 public class PermutationUtilitiesTest {
@@ -17,6 +19,14 @@ public class PermutationUtilitiesTest {
       p2 = PermutationUtilities.createPermutation(word);
       assertFalse("permutations should be random", p1.equals(p2));
     }
+  }
+
+  @Test
+  public void testSubStrings() {
+    String word = "permuta";
+    Set<String> permutatitons = PermutationUtilities.getSubSets(word);
+    System.out.println(permutatitons);
+    assertFalse("Sub sets shouldn't be empty", permutatitons.isEmpty());
   }
 
 }
