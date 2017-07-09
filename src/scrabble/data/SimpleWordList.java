@@ -42,15 +42,7 @@ public class SimpleWordList implements WordList {
 
   @Override
   public boolean addAll(Collection<String> words) {
-    /* try {
-      for (String word : words) {
-        collection.add(word);
-      }
-    } catch (Exception e) {
-      return false;
-    } */
-    collection.addAll(words);
-    return true;
+    return collection.addAll(words);
   }
 
   @Override
