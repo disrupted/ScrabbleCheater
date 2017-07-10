@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Set;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class PermutationUtilitiesTest {
 
@@ -27,6 +27,15 @@ public class PermutationUtilitiesTest {
     Set<String> permutatitons = PermutationUtilities.getSubSets(word);
     System.out.println(permutatitons);
     assertFalse("Sub sets shouldn't be empty", permutatitons.isEmpty());
+  }
+
+  @Test
+  public void testCreatePermutationsWithCorrectLength() {
+    int stringTargetLength = 200;
+    String result = PermutationUtilities.createPermutation(stringTargetLength);
+    System.out.println(result);
+    assertTrue("should only contain letters", result.matches("[a-zA-Z]+"));
+    assertEquals("wrong length", stringTargetLength, result.length());
   }
 
 }
