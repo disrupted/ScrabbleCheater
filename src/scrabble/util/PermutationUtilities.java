@@ -1,9 +1,6 @@
 package scrabble.util;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class PermutationUtilities {
 
@@ -14,7 +11,17 @@ public class PermutationUtilities {
    * @return
    */
   public static Set<String> getSubSets(String str) {
-    return Permutation.generateSubSets(str);
+    Set<String> set = new TreeSet<>();
+    int length = str.length();
+    for (int c = 0; c < length; c++) {
+      for (int i = 1; i < length - c; i++) {
+        String sub = str.substring(c, c + i + 1);
+        System.out.println(sub);
+        if (!set.contains(sub))
+          set.add(sub);
+      }
+    }
+    return set;
   }
 
   public static String createPermutation(int length) {
