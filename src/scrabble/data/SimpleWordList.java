@@ -1,5 +1,7 @@
 package scrabble.data;
 
+import scrabble.util.Permutation;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,16 +13,22 @@ import java.util.TreeSet;
 
 public class SimpleWordList implements WordList {
   private BufferedReader br;
-  TreeSet<String> collection;
+  private TreeSet<String> scrabbleWords;
 
   public SimpleWordList() {
-    collection = new TreeSet<>();
+    scrabbleWords = new TreeSet<>();
   }
 
   @Override
   public Set<String> validWordsUsingAllTiles(String tileRackPart) {
-    // TODO Auto-generated method stub
-    return new HashSet<String>();
+    HashSet<String> results = new HashSet<>();
+    String searchString = new Permutation(tileRackPart).getNormalized();
+    for (String word : scrabbleWords) {
+      Permutation currentPerm = new Permutation(word);
+      if (searchString.equals(currentPerm.getNormalized()))
+        results.add(currentPerm.getWord());
+    }
+    return results;
   }
 
   @Override
@@ -31,24 +39,23 @@ public class SimpleWordList implements WordList {
 
   @Override
   public boolean add(String word) {
-    // TODO Auto-generated method stub
-    if (collection.contains(word)) {
+    if (word == null || scrabbleWords.contains(word)) {
       return false;
     } else {
-      collection.add(word);
+      scrabbleWords.add(word);
       return true;
     }
   }
 
   @Override
   public boolean addAll(Collection<String> words) {
-    return collection.addAll(words);
+    return scrabbleWords.addAll(words);
   }
 
   @Override
   public int size() {
-    if (collection != null) {
-      return collection.size();
+    if (scrabbleWords != null) {
+      return scrabbleWords.size();
     } else {
       return 0;
     }
@@ -65,12 +72,12 @@ public class SimpleWordList implements WordList {
     try {
       while ((currentLine = br.readLine()) != null) {
         System.out.println(currentLine);
-        collection.add(currentLine);
+        scrabbleWords.add(currentLine);
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
-    addAll(collection);
+    addAll(scrabbleWords);
     return this;
   }
 
