@@ -72,21 +72,21 @@ public class Permutation {
 
   @Override
   public int hashCode() {
-    // TBD: implement this method
+    int result = 0;
     if (permutation != null) {
       byte[] bytes = permutation.getBytes();
-      int result = 0;
       for (byte aByte : bytes) {
         result += aByte;
       }
-      return result;
     }
-    return 0;
+    return result;
   }
 
   @Override
   public boolean equals(Object obj) {
-    return obj instanceof Permutation && obj.equals(this.getNormalized());
+    Permutation casted = (Permutation) obj;
+    return this.hashCode() == casted.hashCode();
+    //return obj instanceof Permutation && obj.equals(this.getNormalized());
   }
 
   @Override
