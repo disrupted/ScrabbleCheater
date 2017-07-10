@@ -86,8 +86,7 @@ public class Permutation {
 
   @Override
   public boolean equals(Object obj) {
-    //TBD: Implement equals method
-    return Objects.equals(obj, this.getNormalized());
+    return obj instanceof Permutation && obj.equals(this.getNormalized());
   }
 
   @Override
