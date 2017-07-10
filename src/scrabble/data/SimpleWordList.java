@@ -9,19 +9,18 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class SimpleWordList implements WordList {
   private BufferedReader br;
-  private TreeSet<String> scrabbleWords;
+  private Set<String> scrabbleWords;
 
   public SimpleWordList() {
-    scrabbleWords = new TreeSet<>();
+    scrabbleWords = new HashSet<>();
   }
 
   @Override
   public Set<String> validWordsUsingAllTiles(String tileRackPart) {
-    HashSet<String> results = new HashSet<>();
+    Set<String> results = new HashSet<>();
     String searchString = new Permutation(tileRackPart).getNormalized();
     for (String word : scrabbleWords) {
       Permutation currentPerm = new Permutation(word);
